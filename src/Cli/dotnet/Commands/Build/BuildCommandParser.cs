@@ -35,7 +35,7 @@ internal static class BuildCommandParser
         Arity = ArgumentArity.Zero
     }.ForwardAs("--property:BuildProjectReferences=false");
 
-    public static readonly Option<bool> NoLogoOption = new ForwardedOption<bool>("--nologo")
+    public static readonly Option<bool> NoLogoOption = new ForwardedOption<bool>("--nologo", "--no-logo")
     {
         Description = CliCommandStrings.BuildCmdNoLogo,
         Arity = ArgumentArity.Zero

@@ -23,7 +23,7 @@ internal static class CleanCommandParser
         HelpName = CliCommandStrings.CleanCmdOutputDir
     }.ForwardAsOutputPath("OutputPath");
 
-    public static readonly Option<bool> NoLogoOption = new ForwardedOption<bool>("--nologo")
+    public static readonly Option<bool> NoLogoOption = new ForwardedOption<bool>("--nologo", "--no-logo")
     {
         Description = CliCommandStrings.CleanCmdNoLogo,
         Arity = ArgumentArity.Zero
