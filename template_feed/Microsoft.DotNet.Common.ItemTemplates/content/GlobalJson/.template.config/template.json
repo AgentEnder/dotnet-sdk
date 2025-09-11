@@ -116,8 +116,8 @@
         },
         {
           "choice": "Microsoft.Testing.Platform",
-          "description": "Use the Microsoft Testing Platform test runner",
-          "displayName": "Microsoft Testing Platform"
+          "description": "Use the Microsoft.Testing.Platform test runner",
+          "displayName": "Microsoft.Testing.Platform"
         }
       ]
     }
