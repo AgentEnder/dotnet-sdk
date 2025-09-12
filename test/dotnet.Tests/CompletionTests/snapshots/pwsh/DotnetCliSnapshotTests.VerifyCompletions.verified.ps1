@@ -1,12 +1,12 @@
 ﻿using namespace System.Management.Automation
 using namespace System.Management.Automation.Language
 
-Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
+Register-ArgumentCompleter -Native -CommandName 'dotnet.Tests' -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
 
     $commandElements = $commandAst.CommandElements
     $command = @(
-        'testhost'
+        'dotnet.Tests'
         for ($i = 1; $i -lt $commandElements.Count; $i++) {
             $element = $commandElements[$i]
             if ($element -isnot [StringConstantExpressionAst] -or
@@ -20,7 +20,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
 
     $completions = @()
     switch ($command) {
-        'testhost' {
+        'dotnet.Tests' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -59,7 +59,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;build' {
+        'dotnet.Tests;build' {
             $staticCompletions = @(
                 [CompletionResult]::new('--use-current-runtime', '--use-current-runtime', [CompletionResultType]::ParameterName, "Use current runtime as the target runtime.")
                 [CompletionResult]::new('--use-current-runtime', '--ucr', [CompletionResultType]::ParameterName, "Use current runtime as the target runtime.")
@@ -84,7 +84,8 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
                 [CompletionResult]::new('--artifacts-path', '--artifacts-path', [CompletionResultType]::ParameterName, "The artifacts path. All output from the project, including build, publish, and pack output, will go in subfolders under the specified path.")
                 [CompletionResult]::new('--no-incremental', '--no-incremental', [CompletionResultType]::ParameterName, "Do not use incremental building.")
                 [CompletionResult]::new('--no-dependencies', '--no-dependencies', [CompletionResultType]::ParameterName, "Do not build project-to-project references and only build the specified project.")
-                [CompletionResult]::new('--nologo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--no-logo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
                 [CompletionResult]::new('--self-contained', '--self-contained', [CompletionResultType]::ParameterName, "Publish the .NET runtime with your application so the runtime doesn`'t need to be installed on the target machine. The default is `'false.`' However, when targeting .NET 7 or lower, the default is `'true`' if a runtime identifier is specified.")
                 [CompletionResult]::new('--self-contained', '--sc', [CompletionResultType]::ParameterName, "Publish the .NET runtime with your application so the runtime doesn`'t need to be installed on the target machine. The default is `'false.`' However, when targeting .NET 7 or lower, the default is `'true`' if a runtime identifier is specified.")
                 [CompletionResult]::new('--no-self-contained', '--no-self-contained', [CompletionResultType]::ParameterName, "Publish your application as a framework dependent application. A compatible .NET runtime must be installed on the target machine to run your application.")
@@ -98,7 +99,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;build-server' {
+        'dotnet.Tests;build-server' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -107,7 +108,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;build-server;shutdown' {
+        'dotnet.Tests;build-server;shutdown' {
             $staticCompletions = @(
                 [CompletionResult]::new('--msbuild', '--msbuild', [CompletionResultType]::ParameterName, "Shut down the MSBuild build server.")
                 [CompletionResult]::new('--vbcscompiler', '--vbcscompiler', [CompletionResultType]::ParameterName, "Shut down the VB/C# compiler build server.")
@@ -118,7 +119,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;clean' {
+        'dotnet.Tests;clean' {
             $staticCompletions = @(
                 [CompletionResult]::new('--framework', '--framework', [CompletionResultType]::ParameterName, "The target framework to clean for. The target framework must also be specified in the project file.")
                 [CompletionResult]::new('--framework', '-f', [CompletionResultType]::ParameterName, "The target framework to clean for. The target framework must also be specified in the project file.")
@@ -132,7 +133,8 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
                 [CompletionResult]::new('--output', '--output', [CompletionResultType]::ParameterName, "The directory containing the build artifacts to clean.")
                 [CompletionResult]::new('--output', '-o', [CompletionResultType]::ParameterName, "The directory containing the build artifacts to clean.")
                 [CompletionResult]::new('--artifacts-path', '--artifacts-path', [CompletionResultType]::ParameterName, "The artifacts path. All output from the project, including build, publish, and pack output, will go in subfolders under the specified path.")
-                [CompletionResult]::new('--nologo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--no-logo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
                 [CompletionResult]::new('--disable-build-servers', '--disable-build-servers', [CompletionResultType]::ParameterName, "Force the command to ignore any persistent build servers.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -140,7 +142,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;format' {
+        'dotnet.Tests;format' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -148,7 +150,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;fsi' {
+        'dotnet.Tests;fsi' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -156,7 +158,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;msbuild' {
+        'dotnet.Tests;msbuild' {
             $staticCompletions = @(
                 [CompletionResult]::new('--disable-build-servers', '--disable-build-servers', [CompletionResultType]::ParameterName, "Force the command to ignore any persistent build servers.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -165,7 +167,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new' {
+        'dotnet.Tests;new' {
             $staticCompletions = @(
                 [CompletionResult]::new('--output', '--output', [CompletionResultType]::ParameterName, "Location to place the generated output.")
                 [CompletionResult]::new('--output', '-o', [CompletionResultType]::ParameterName, "Location to place the generated output.")
@@ -192,7 +194,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;create' {
+        'dotnet.Tests;new;create' {
             $staticCompletions = @(
                 [CompletionResult]::new('--output', '--output', [CompletionResultType]::ParameterName, "Location to place the generated output.")
                 [CompletionResult]::new('--output', '-o', [CompletionResultType]::ParameterName, "Location to place the generated output.")
@@ -212,7 +214,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;install' {
+        'dotnet.Tests;new;install' {
             $staticCompletions = @(
                 [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, "Allows the command to stop and wait for user input or action (for example to complete authentication).")
                 [CompletionResult]::new('--add-source', '--add-source', [CompletionResultType]::ParameterName, "Specifies a NuGet source to use.")
@@ -228,7 +230,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;uninstall' {
+        'dotnet.Tests;new;uninstall' {
             $staticCompletions = @(
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Sets the verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], and diag[nostic].")
                 [CompletionResult]::new('--verbosity', '-v', [CompletionResultType]::ParameterName, "Sets the verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], and diag[nostic].")
@@ -240,7 +242,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;update' {
+        'dotnet.Tests;new;update' {
             $staticCompletions = @(
                 [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, "Allows the command to stop and wait for user input or action (for example to complete authentication).")
                 [CompletionResult]::new('--add-source', '--add-source', [CompletionResultType]::ParameterName, "Specifies a NuGet source to use.")
@@ -257,7 +259,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;search' {
+        'dotnet.Tests;new;search' {
             $staticCompletions = @(
                 [CompletionResult]::new('--author', '--author', [CompletionResultType]::ParameterName, "Filters the templates based on the template author.")
                 [CompletionResult]::new('--language', '--language', [CompletionResultType]::ParameterName, "Filters templates based on language.")
@@ -277,7 +279,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;list' {
+        'dotnet.Tests;new;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--author', '--author', [CompletionResultType]::ParameterName, "Filters the templates based on the template author.")
                 [CompletionResult]::new('--language', '--language', [CompletionResultType]::ParameterName, "Filters templates based on language.")
@@ -300,7 +302,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;new;details' {
+        'dotnet.Tests;new;details' {
             $staticCompletions = @(
                 [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, "Allows the command to stop and wait for user input or action (for example to complete authentication).")
                 [CompletionResult]::new('--add-source', '--add-source', [CompletionResultType]::ParameterName, "Specifies a NuGet source to use.")
@@ -315,7 +317,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget' {
+        'dotnet.Tests;nuget' {
             $staticCompletions = @(
                 [CompletionResult]::new('--version', '--version', [CompletionResultType]::ParameterName, "--version")
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "--verbosity")
@@ -333,7 +335,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;delete' {
+        'dotnet.Tests;nuget;delete' {
             $staticCompletions = @(
                 [CompletionResult]::new('--force-english-output', '--force-english-output', [CompletionResultType]::ParameterName, "--force-english-output")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "--source")
@@ -349,7 +351,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;locals' {
+        'dotnet.Tests;nuget;locals' {
             $staticCompletions = @(
                 [CompletionResult]::new('--force-english-output', '--force-english-output', [CompletionResultType]::ParameterName, "--force-english-output")
                 [CompletionResult]::new('--clear', '--clear', [CompletionResultType]::ParameterName, "--clear")
@@ -367,7 +369,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;push' {
+        'dotnet.Tests;nuget;push' {
             $staticCompletions = @(
                 [CompletionResult]::new('--force-english-output', '--force-english-output', [CompletionResultType]::ParameterName, "--force-english-output")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "--source")
@@ -394,7 +396,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;verify' {
+        'dotnet.Tests;nuget;verify' {
             $staticCompletions = @(
                 [CompletionResult]::new('--all', '--all', [CompletionResultType]::ParameterName, "--all")
                 [CompletionResult]::new('--certificate-fingerprint', '--certificate-fingerprint', [CompletionResultType]::ParameterName, "--certificate-fingerprint")
@@ -406,7 +408,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust' {
+        'dotnet.Tests;nuget;trust' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "--configfile")
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -424,7 +426,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;list' {
+        'dotnet.Tests;nuget;trust;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "--configfile")
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -435,7 +437,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;author' {
+        'dotnet.Tests;nuget;trust;author' {
             $staticCompletions = @(
                 [CompletionResult]::new('--allow-untrusted-root', '--allow-untrusted-root', [CompletionResultType]::ParameterName, "--allow-untrusted-root")
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "--configfile")
@@ -447,7 +449,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;repository' {
+        'dotnet.Tests;nuget;trust;repository' {
             $staticCompletions = @(
                 [CompletionResult]::new('--allow-untrusted-root', '--allow-untrusted-root', [CompletionResultType]::ParameterName, "--allow-untrusted-root")
                 [CompletionResult]::new('--owners', '--owners', [CompletionResultType]::ParameterName, "--owners")
@@ -460,7 +462,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;source' {
+        'dotnet.Tests;nuget;trust;source' {
             $staticCompletions = @(
                 [CompletionResult]::new('--owners', '--owners', [CompletionResultType]::ParameterName, "--owners")
                 [CompletionResult]::new('--source-url', '--source-url', [CompletionResultType]::ParameterName, "--source-url")
@@ -473,7 +475,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;certificate' {
+        'dotnet.Tests;nuget;trust;certificate' {
             $staticCompletions = @(
                 [CompletionResult]::new('--allow-untrusted-root', '--allow-untrusted-root', [CompletionResultType]::ParameterName, "--allow-untrusted-root")
                 [CompletionResult]::new('--algorithm', '--algorithm', [CompletionResultType]::ParameterName, "--algorithm")
@@ -486,7 +488,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;remove' {
+        'dotnet.Tests;nuget;trust;remove' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "--configfile")
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -497,7 +499,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;trust;sync' {
+        'dotnet.Tests;nuget;trust;sync' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "--configfile")
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -508,7 +510,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;sign' {
+        'dotnet.Tests;nuget;sign' {
             $staticCompletions = @(
                 [CompletionResult]::new('--output', '--output', [CompletionResultType]::ParameterName, "--output")
                 [CompletionResult]::new('--output', '-o', [CompletionResultType]::ParameterName, "--output")
@@ -530,7 +532,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;nuget;why' {
+        'dotnet.Tests;nuget;why' {
             $staticCompletions = @(
                 [CompletionResult]::new('--framework', '--framework', [CompletionResultType]::ParameterName, "The target framework(s) for which dependency graphs are shown.")
                 [CompletionResult]::new('--framework', '-f', [CompletionResultType]::ParameterName, "The target framework(s) for which dependency graphs are shown.")
@@ -540,7 +542,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;pack' {
+        'dotnet.Tests;pack' {
             $staticCompletions = @(
                 [CompletionResult]::new('--output', '--output', [CompletionResultType]::ParameterName, "The output directory to place built packages in.")
                 [CompletionResult]::new('--output', '-o', [CompletionResultType]::ParameterName, "The output directory to place built packages in.")
@@ -550,7 +552,8 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
                 [CompletionResult]::new('--include-source', '--include-source', [CompletionResultType]::ParameterName, "Include PDBs and source files. Source files go into the `'src`' folder in the resulting nuget package.")
                 [CompletionResult]::new('--serviceable', '--serviceable', [CompletionResultType]::ParameterName, "Set the serviceable flag in the package. See https://aka.ms/nupkgservicing for more information.")
                 [CompletionResult]::new('--serviceable', '-s', [CompletionResultType]::ParameterName, "Set the serviceable flag in the package. See https://aka.ms/nupkgservicing for more information.")
-                [CompletionResult]::new('--nologo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--no-logo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
                 [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, "Allows the command to stop and wait for user input or action (for example to complete authentication).")
                 [CompletionResult]::new('--no-restore', '--no-restore', [CompletionResultType]::ParameterName, "Do not restore the project before building.")
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -574,7 +577,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;package' {
+        'dotnet.Tests;package' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -587,7 +590,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;package;search' {
+        'dotnet.Tests;package;search' {
             $staticCompletions = @(
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "The package source to search. You can pass multiple ``--source`` options to search multiple package sources. Example: ``--source https://api.nuget.org/v3/index.json``.")
                 [CompletionResult]::new('--take', '--take', [CompletionResultType]::ParameterName, "Number of results to return. Default 20.")
@@ -604,7 +607,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;package;add' {
+        'dotnet.Tests;package;add' {
             $staticCompletions = @(
                 [CompletionResult]::new('--version', '--version', [CompletionResultType]::ParameterName, "The version of the package to add.")
                 [CompletionResult]::new('--version', '-v', [CompletionResultType]::ParameterName, "The version of the package to add.")
@@ -629,7 +632,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $dynamicCompletions
             break
         }
-        'testhost;package;list' {
+        'dotnet.Tests;package;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
                 [CompletionResult]::new('--verbosity', '-v', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -657,7 +660,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;package;remove' {
+        'dotnet.Tests;package;remove' {
             $staticCompletions = @(
                 [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, "Allows the command to stop and wait for user input or action (for example to complete authentication).")
                 [CompletionResult]::new('--project', '--project', [CompletionResultType]::ParameterName, "The project file to operate on. If a file is not specified, the command will search the current directory for one.")
@@ -668,7 +671,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;package;update' {
+        'dotnet.Tests;package;update' {
             $staticCompletions = @(
                 [CompletionResult]::new('--project', '--project', [CompletionResultType]::ParameterName, "Path to a project or solution file, or a directory.")
                 [CompletionResult]::new('--interactive', '--interactive', [CompletionResultType]::ParameterName, "Allows the command to stop and wait for user input or action (for example to complete authentication).")
@@ -680,7 +683,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;project' {
+        'dotnet.Tests;project' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -689,7 +692,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;project;convert' {
+        'dotnet.Tests;project;convert' {
             $staticCompletions = @(
                 [CompletionResult]::new('--output', '--output', [CompletionResultType]::ParameterName, "Location to place the generated output.")
                 [CompletionResult]::new('--output', '-o', [CompletionResultType]::ParameterName, "Location to place the generated output.")
@@ -702,7 +705,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;publish' {
+        'dotnet.Tests;publish' {
             $staticCompletions = @(
                 [CompletionResult]::new('--use-current-runtime', '--use-current-runtime', [CompletionResultType]::ParameterName, "Use current runtime as the target runtime.")
                 [CompletionResult]::new('--use-current-runtime', '--ucr', [CompletionResultType]::ParameterName, "Use current runtime as the target runtime.")
@@ -714,7 +717,8 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
                 [CompletionResult]::new('--self-contained', '--self-contained', [CompletionResultType]::ParameterName, "Publish the .NET runtime with your application so the runtime doesn`'t need to be installed on the target machine. The default is `'false.`' However, when targeting .NET 7 or lower, the default is `'true`' if a runtime identifier is specified.")
                 [CompletionResult]::new('--self-contained', '--sc', [CompletionResultType]::ParameterName, "Publish the .NET runtime with your application so the runtime doesn`'t need to be installed on the target machine. The default is `'false.`' However, when targeting .NET 7 or lower, the default is `'true`' if a runtime identifier is specified.")
                 [CompletionResult]::new('--no-self-contained', '--no-self-contained', [CompletionResultType]::ParameterName, "Publish your application as a framework dependent application. A compatible .NET runtime must be installed on the target machine to run your application.")
-                [CompletionResult]::new('--nologo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--no-logo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
+                [CompletionResult]::new('--no-logo', '--nologo', [CompletionResultType]::ParameterName, "Do not display the startup banner or the copyright message.")
                 [CompletionResult]::new('--framework', '--framework', [CompletionResultType]::ParameterName, "The target framework to publish for. The target framework has to be specified in the project file.")
                 [CompletionResult]::new('--framework', '-f', [CompletionResultType]::ParameterName, "The target framework to publish for. The target framework has to be specified in the project file.")
                 [CompletionResult]::new('--runtime', '--runtime', [CompletionResultType]::ParameterName, "The target runtime to publish for. This is used when creating a self-contained deployment. The default is to publish a framework-dependent application.")
@@ -740,7 +744,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;reference' {
+        'dotnet.Tests;reference' {
             $staticCompletions = @(
                 [CompletionResult]::new('--project', '--project', [CompletionResultType]::ParameterName, "The project file to operate on. If a file is not specified, the command will search the current directory for one.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -752,7 +756,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;reference;add' {
+        'dotnet.Tests;reference;add' {
             $staticCompletions = @(
                 [CompletionResult]::new('--framework', '--framework', [CompletionResultType]::ParameterName, "Add the reference only when targeting a specific framework.")
                 [CompletionResult]::new('--framework', '-f', [CompletionResultType]::ParameterName, "Add the reference only when targeting a specific framework.")
@@ -764,7 +768,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;reference;list' {
+        'dotnet.Tests;reference;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--project', '--project', [CompletionResultType]::ParameterName, "The project file to operate on. If a file is not specified, the command will search the current directory for one.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -773,7 +777,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;reference;remove' {
+        'dotnet.Tests;reference;remove' {
             $staticCompletions = @(
                 [CompletionResult]::new('--framework', '--framework', [CompletionResultType]::ParameterName, "Remove the reference only when targeting a specific framework.")
                 [CompletionResult]::new('--framework', '-f', [CompletionResultType]::ParameterName, "Remove the reference only when targeting a specific framework.")
@@ -788,7 +792,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $dynamicCompletions
             break
         }
-        'testhost;restore' {
+        'dotnet.Tests;restore' {
             $staticCompletions = @(
                 [CompletionResult]::new('--disable-build-servers', '--disable-build-servers', [CompletionResultType]::ParameterName, "Force the command to ignore any persistent build servers.")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "The NuGet package source to use for the restore.")
@@ -822,7 +826,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;run' {
+        'dotnet.Tests;run' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configuration', '--configuration', [CompletionResultType]::ParameterName, "The configuration to run for. The default for most projects is `'Debug`'.")
                 [CompletionResult]::new('--configuration', '-c', [CompletionResultType]::ParameterName, "The configuration to run for. The default for most projects is `'Debug`'.")
@@ -861,7 +865,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;solution' {
+        'dotnet.Tests;solution' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -873,7 +877,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;solution;add' {
+        'dotnet.Tests;solution;add' {
             $staticCompletions = @(
                 [CompletionResult]::new('--in-root', '--in-root', [CompletionResultType]::ParameterName, "Place project in root of the solution, rather than creating a solution folder.")
                 [CompletionResult]::new('--solution-folder', '--solution-folder', [CompletionResultType]::ParameterName, "The destination solution folder path to add the projects to.")
@@ -885,7 +889,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;solution;list' {
+        'dotnet.Tests;solution;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--solution-folders', '--solution-folders', [CompletionResultType]::ParameterName, "Display solution folder paths.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -894,7 +898,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;solution;remove' {
+        'dotnet.Tests;solution;remove' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -902,7 +906,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;solution;migrate' {
+        'dotnet.Tests;solution;migrate' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -910,7 +914,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;store' {
+        'dotnet.Tests;store' {
             $staticCompletions = @(
                 [CompletionResult]::new('--manifest', '--manifest', [CompletionResultType]::ParameterName, "The XML file that contains the list of packages to be stored.")
                 [CompletionResult]::new('--manifest', '-m', [CompletionResultType]::ParameterName, "The XML file that contains the list of packages to be stored.")
@@ -940,7 +944,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;test' {
+        'dotnet.Tests;test' {
             $staticCompletions = @(
                 [CompletionResult]::new('--settings', '--settings', [CompletionResultType]::ParameterName, "The settings file to use when running tests.")
                 [CompletionResult]::new('--settings', '-s', [CompletionResultType]::ParameterName, "The settings file to use when running tests.")
@@ -967,7 +971,8 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
                 [CompletionResult]::new('--blame-hang', '--blame-hang', [CompletionResultType]::ParameterName, "Run the tests in blame mode and enables collecting hang dump when test exceeds the given timeout.")
                 [CompletionResult]::new('--blame-hang-dump-type', '--blame-hang-dump-type', [CompletionResultType]::ParameterName, "The type of crash dump to be collected. The supported values are full (default), mini, and none. When `'none`' is used then test host is terminated on timeout, but no dump is collected. Implies --blame-hang.")
                 [CompletionResult]::new('--blame-hang-timeout', '--blame-hang-timeout', [CompletionResultType]::ParameterName, "Per-test timeout, after which hang dump is triggered and the testhost process is terminated. Default is 1h. The timeout value is specified in the following format: 1.5h / 90m / 5400s / 5400000ms. When no unit is used (e.g. 5400000), the value is assumed to be in milliseconds. When used together with data driven tests, the timeout behavior depends on the test adapter used. For xUnit, NUnit and MSTest 2.2.4+ the timeout is renewed after every test case, For MSTest before 2.2.4, the timeout is used for all testcases.")
-                [CompletionResult]::new('--nologo', '--nologo', [CompletionResultType]::ParameterName, "Run test(s), without displaying Microsoft Testplatform banner")
+                [CompletionResult]::new('--no-logo', '--no-logo', [CompletionResultType]::ParameterName, "Run test(s), without displaying Microsoft Testplatform banner")
+                [CompletionResult]::new('--no-logo', '--nologo', [CompletionResultType]::ParameterName, "Run test(s), without displaying Microsoft Testplatform banner")
                 [CompletionResult]::new('--configuration', '--configuration', [CompletionResultType]::ParameterName, "The configuration to use for running tests. The default for most projects is `'Debug`'.")
                 [CompletionResult]::new('--configuration', '-c', [CompletionResultType]::ParameterName, "The configuration to use for running tests. The default for most projects is `'Debug`'.")
                 [CompletionResult]::new('--framework', '--framework', [CompletionResultType]::ParameterName, "The target framework to run tests for. The target framework must also be specified in the project file.")
@@ -992,7 +997,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool' {
+        'dotnet.Tests;tool' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1009,7 +1014,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool;install' {
+        'dotnet.Tests;tool;install' {
             $staticCompletions = @(
                 [CompletionResult]::new('--global', '--global', [CompletionResultType]::ParameterName, "Install the tool for the current user.")
                 [CompletionResult]::new('--global', '-g', [CompletionResultType]::ParameterName, "Install the tool for the current user.")
@@ -1043,7 +1048,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $dynamicCompletions
             break
         }
-        'testhost;tool;uninstall' {
+        'dotnet.Tests;tool;uninstall' {
             $staticCompletions = @(
                 [CompletionResult]::new('--global', '--global', [CompletionResultType]::ParameterName, "Uninstall the tool from the current user`'s tools directory.")
                 [CompletionResult]::new('--global', '-g', [CompletionResultType]::ParameterName, "Uninstall the tool from the current user`'s tools directory.")
@@ -1056,7 +1061,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool;update' {
+        'dotnet.Tests;tool;update' {
             $staticCompletions = @(
                 [CompletionResult]::new('--global', '--global', [CompletionResultType]::ParameterName, "Install the tool for the current user.")
                 [CompletionResult]::new('--global', '-g', [CompletionResultType]::ParameterName, "Install the tool for the current user.")
@@ -1087,7 +1092,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $dynamicCompletions
             break
         }
-        'testhost;tool;list' {
+        'dotnet.Tests;tool;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--global', '--global', [CompletionResultType]::ParameterName, "List tools installed for the current user.")
                 [CompletionResult]::new('--global', '-g', [CompletionResultType]::ParameterName, "List tools installed for the current user.")
@@ -1100,7 +1105,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool;run' {
+        'dotnet.Tests;tool;run' {
             $staticCompletions = @(
                 [CompletionResult]::new('--allow-roll-forward', '--allow-roll-forward', [CompletionResultType]::ParameterName, "Allow a .NET tool to roll forward to newer versions of the .NET runtime if the runtime it targets isn`'t installed.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1109,7 +1114,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool;search' {
+        'dotnet.Tests;tool;search' {
             $staticCompletions = @(
                 [CompletionResult]::new('--detail', '--detail', [CompletionResultType]::ParameterName, "Show detail result of the query.")
                 [CompletionResult]::new('--skip', '--skip', [CompletionResultType]::ParameterName, "The number of results to skip, for pagination.")
@@ -1121,7 +1126,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool;restore' {
+        'dotnet.Tests;tool;restore' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "The NuGet configuration file to use.")
                 [CompletionResult]::new('--add-source', '--add-source', [CompletionResultType]::ParameterName, "Add an additional NuGet package source to use during installation.")
@@ -1138,7 +1143,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;tool;execute' {
+        'dotnet.Tests;tool;execute' {
             $staticCompletions = @(
                 [CompletionResult]::new('--version', '--version', [CompletionResultType]::ParameterName, "The version of the tool package to install.")
                 [CompletionResult]::new('--yes', '--yes', [CompletionResultType]::ParameterName, "Accept all confirmation prompts using `"yes.`"")
@@ -1164,7 +1169,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $dynamicCompletions
             break
         }
-        'testhost;vstest' {
+        'dotnet.Tests;vstest' {
             $staticCompletions = @(
                 [CompletionResult]::new('--Platform', '--Platform', [CompletionResultType]::ParameterName, "--Platform")
                 [CompletionResult]::new('--Framework', '--Framework', [CompletionResultType]::ParameterName, "--Framework")
@@ -1175,7 +1180,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;help' {
+        'dotnet.Tests;help' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1183,7 +1188,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;sdk' {
+        'dotnet.Tests;sdk' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1192,7 +1197,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;sdk;check' {
+        'dotnet.Tests;sdk;check' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1200,7 +1205,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload' {
+        'dotnet.Tests;workload' {
             $staticCompletions = @(
                 [CompletionResult]::new('--info', '--info', [CompletionResultType]::ParameterName, "Display information about installed workloads.")
                 [CompletionResult]::new('--version', '--version', [CompletionResultType]::ParameterName, "Display the currently installed workload version.")
@@ -1220,7 +1225,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;install' {
+        'dotnet.Tests;workload;install' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "The NuGet configuration file to use.")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "The NuGet package source to use during the restore. To specify multiple sources, repeat the option.")
@@ -1241,7 +1246,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;update' {
+        'dotnet.Tests;workload;update' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "The NuGet configuration file to use.")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "The NuGet package source to use during the restore. To specify multiple sources, repeat the option.")
@@ -1265,7 +1270,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;list' {
+        'dotnet.Tests;workload;list' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1273,7 +1278,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;search' {
+        'dotnet.Tests;workload;search' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1282,7 +1287,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;search;version' {
+        'dotnet.Tests;workload;search;version' {
             $staticCompletions = @(
                 [CompletionResult]::new('--format', '--format', [CompletionResultType]::ParameterName, "Changes the format of outputted workload versions. Can take `'json`' or `'list`'")
                 [CompletionResult]::new('--take', '--take', [CompletionResultType]::ParameterName, "--take")
@@ -1293,7 +1298,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;uninstall' {
+        'dotnet.Tests;workload;uninstall' {
             $staticCompletions = @(
                 [CompletionResult]::new('--verbosity', '--verbosity', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
                 [CompletionResult]::new('--verbosity', '-v', [CompletionResultType]::ParameterName, "Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].")
@@ -1303,7 +1308,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;repair' {
+        'dotnet.Tests;workload;repair' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "The NuGet configuration file to use.")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "The NuGet package source to use during the restore. To specify multiple sources, repeat the option.")
@@ -1320,7 +1325,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;restore' {
+        'dotnet.Tests;workload;restore' {
             $staticCompletions = @(
                 [CompletionResult]::new('--configfile', '--configfile', [CompletionResultType]::ParameterName, "The NuGet configuration file to use.")
                 [CompletionResult]::new('--source', '--source', [CompletionResultType]::ParameterName, "The NuGet package source to use during the restore. To specify multiple sources, repeat the option.")
@@ -1341,7 +1346,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;clean' {
+        'dotnet.Tests;workload;clean' {
             $staticCompletions = @(
                 [CompletionResult]::new('--all', '--all', [CompletionResultType]::ParameterName, "Causes clean to remove and uninstall all workload components from all SDK versions.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1350,7 +1355,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;config' {
+        'dotnet.Tests;workload;config' {
             $staticCompletions = @(
                 [CompletionResult]::new('--update-mode', '--update-mode', [CompletionResultType]::ParameterName, "Controls whether updates should look for workload sets or the latest version of each individual manifest.")
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1359,7 +1364,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;workload;history' {
+        'dotnet.Tests;workload;history' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1367,7 +1372,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;completions' {
+        'dotnet.Tests;completions' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
@@ -1376,7 +1381,7 @@ Register-ArgumentCompleter -Native -CommandName 'testhost' -ScriptBlock {
             $completions += $staticCompletions
             break
         }
-        'testhost;completions;script' {
+        'dotnet.Tests;completions;script' {
             $staticCompletions = @(
                 [CompletionResult]::new('--help', '--help', [CompletionResultType]::ParameterName, "Show command line help.")
                 [CompletionResult]::new('--help', '-h', [CompletionResultType]::ParameterName, "Show command line help.")
