@@ -1,4 +1,5 @@
 {
+  "name": "Microsoft.NET.Sdk.Publish",
   "targets": {
     "build": {
       "outputs": [

@@ -1,4 +1,5 @@
 {
+  "name": "Microsoft.NET.Sdk.Web",
   "targets": {
     "build": {
       "outputs": [
