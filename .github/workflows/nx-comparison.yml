@@ -62,7 +62,7 @@ jobs:
           dotnet build src/WebSdk/Publish/Tasks/Microsoft.NET.Sdk.Publish.Tasks.csproj  
           dotnet build src/WebSdk/Worker/Tasks/Microsoft.NET.Sdk.Worker.Tasks.csproj
           dotnet build src/WebSdk/ProjectSystem/Tasks/Microsoft.NET.Sdk.Web.ProjectSystem.Tasks.csproj
-          dotnet build ./src/Layout/redist/redist.csproj -c Release
+          dotnet build ./src/Layout/redist/redist.csproj
 
       - name: Record end time
         id: end_time
