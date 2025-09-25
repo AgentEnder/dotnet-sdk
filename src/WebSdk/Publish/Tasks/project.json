@@ -1,0 +1,11 @@
+{
+  "name": "Microsoft.NET.Sdk.Publish",
+  "targets": {
+    "build": {
+      "outputs": [
+        "{workspaceRoot}/artifacts/obj/Sdks/Microsoft.NET.Sdk.Publish/tools",
+        "{workspaceRoot}/artifacts/bin/Sdks/Microsoft.NET.Sdk.Publish/tools"
+      ]
+    }
+  }
+}
